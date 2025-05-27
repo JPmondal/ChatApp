@@ -136,4 +136,13 @@ const updateProfile = async (req, res) => {
   }
 };
 
-export { userSignUp, userLogin, updateProfile };
+//check checkAuth
+const checkAuth = async (req,res)=>{
+  return res.status(200).json({
+    success: true,
+    message: "User is authenticated",
+    user: req.user,
+  })
+}
+
+export { userSignUp,checkAuth, userLogin, updateProfile };

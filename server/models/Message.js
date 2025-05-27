@@ -8,6 +8,4 @@ const MessageSchema = new mongoose.Schema({
    seen : {type : Boolean, default : false}
 },{timestamps :true})
 
-const Message = mongoose.model("Message",MessageSchema)
-
-export default Message
+export const Message = mongoose.model("Message",MessageSchema)

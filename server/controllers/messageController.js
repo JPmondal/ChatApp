@@ -1,6 +1,7 @@
-import Message from "../models/Message";
-import User from "../models/User";
-import cloudinary from "../lib/cloudinary";
+import {Message} from "../models/Message.js";
+import User from "../models/User.js";
+import cloudinary from "../lib/cloudinary.js";
+import { io,userSocketMap } from "../server.js";
 
 // get alluser except logged in user
 
@@ -111,6 +112,12 @@ const sendMessage = async (req,res)=>{
     image:imageUrl
    })
 
+   const receiverSocketId = userSocketMap[receiverId];
+   //emit message to receiver
+   if(receiverSocketId){
+    io.to(receiverSocketId).emit('newMessage',newMessage);
+   }
+
    //no return
    res.status(201).json({
     success: true,
@@ -126,4 +133,4 @@ const sendMessage = async (req,res)=>{
   }
 }
 
-export { getUserForSideBar,getMessages,markMesssageAsSeen };
+export { getUserForSideBar,getMessages,markMesssageAsSeen ,sendMessage};
