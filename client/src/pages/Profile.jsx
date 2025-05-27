@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import assets from "../assets/assets";
 import {useNavigate} from 'react-router-dom';
+import { AuthContext } from "../../context/authContext";
 
 
 
@@ -11,6 +12,8 @@ const Profile = () => {
   const [fullName, setFullName] = useState("Martin Golder");
   const [bio, setBio] = useState("Hi Everyone, I am Using QuickChat");
   const [profilePic, setProfilePic] = useState(null);
+
+  const {authUser,updateProfile} = useContext(AuthContext)
 
   const onSubmitHandler = async (e) => {
        e.preventDefault()

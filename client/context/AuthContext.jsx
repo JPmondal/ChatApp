@@ -60,9 +60,10 @@ export const AuthContextProvider = ({children})=>{
 
 
     //Login user
-  const logIn = async(state,credetials) =>{
+  const logIn = async(state,credentials) =>{
   try {
-    const {data} = await axios.post(`/api/user/${state}`,credetials)
+    const {data} = await axios.post(`/api/user/${state}`,credentials)
+    console.log(data)
 
     if(data.success){
         setAuthUser(data.user)

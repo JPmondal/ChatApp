@@ -18,7 +18,8 @@ const Login = () => {
       setIsSubmitted(true)
       return
     }
-    logIn(currentStae === "Sifn Up" ? 'signup' : "login",{fullName,bio,email,password})
+
+    logIn(currentStae === "Sign Up" ? 'signup' : 'login',{fullName,bio,email,password})
     
   };
 
@@ -35,6 +36,7 @@ const Login = () => {
         </div>
         {currentStae === "Sign Up" && !isSubmitted && (
           <input
+            onChange={(e) => setFullName(e.target.value)}
             required
             type="text"
             placeholder="Enter Full Name"
@@ -62,7 +64,7 @@ const Login = () => {
         {
           currentStae === "Sign Up" && isSubmitted && (
             <textarea name="
-            bio" id="bio" rows="4" className="font-medium  p-2 border-gray-500 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="provide a short bio..."></textarea>
+            bio" onChange={(e) => setBio(e.target.value)} id="bio" rows="4" className="font-medium  p-2 border-gray-500 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="provide a short bio..."></textarea>
           )
         }
         <button 
