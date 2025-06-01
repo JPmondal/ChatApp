@@ -18,9 +18,7 @@ const Login = () => {
       setIsSubmitted(true)
       return
     }
-
     logIn(currentStae === "Sign Up" ? 'signup' : 'login',{fullName,bio,email,password})
-    
   };
 
   return (

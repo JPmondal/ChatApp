@@ -42,7 +42,7 @@ const userSignUp = async (req, res) => {
       success: true,
       message: "User created successfully",
       token,
-      userData: newUser,
+      user: newUser,
     });
   } catch (error) {
     console.log(error.message);
@@ -85,9 +85,9 @@ const userLogin = async (req, res) => {
     res.cookie("token", token);
     return res.status(200).json({
       success: true,
-      mesage: "user logged in succesfully",
+      message: "user logged in succesfully",
       token,
-      userData: user,
+      user,
     });
   } catch (error) {
     console.log(error.message);

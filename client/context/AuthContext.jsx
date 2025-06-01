@@ -4,21 +4,17 @@ import { useState } from "react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
+import { useNavigate } from "react-router-dom";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL
-
 axios.defaults.baseURL = backendUrl
-
 export const AuthContext = createContext()
-
 export const AuthContextProvider = ({children})=>{
 
+    const navigate = useNavigate()
     const [token,setToken] = useState(localStorage.getItem('token'))
-
     const [authUser,setAuthUser] = useState(null)
-
     const [onlineUsers,setOnlineUsers] = useState([])
-
     const [socket,setSocket] = useState(null)
 
     //checking user authentication for socket connection
@@ -26,12 +22,10 @@ export const AuthContextProvider = ({children})=>{
     const checkAuth = async ()=>{
         try {
             const {data} = await axios.get('/api/user/check')
-
             if(data.success){
                 setAuthUser(data.user)
                 connectSocket(data.user)
-            }
-           
+            } 
         } catch (error) {
             toast.error(error.message)
         }
@@ -72,6 +66,7 @@ export const AuthContextProvider = ({children})=>{
         localStorage.setItem('token',data.token)
         connectSocket(data.user)
         toast.success(data.message)
+        navigate('/')
     }else{
         toast.error(data.message)
     }
@@ -98,7 +93,7 @@ export const AuthContextProvider = ({children})=>{
   // update profile function 
   const upDateProfile = async (body)=>{
     try {
-        const {data} = await axios.put('/api/user/update-profle',body)
+        const {data} = await axios.put('/api/user/update-profile',body)
 
         if(data.success){
             setAuthUser(data.user)
@@ -114,8 +109,9 @@ export const AuthContextProvider = ({children})=>{
 
     useEffect(()=>{
         if(token){
-            axios.defaults.headers.common['token'] = token }
-            checkAuth()
+            axios.defaults.headers.common['token'] = token
+            checkAuth()  
+        }      
     },[])
    
     const value = {
