@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { AuthContext } from "./authContext";
 import toast from "react-hot-toast";
-import { PrefetchPageLinks } from "react-router-dom";
+
 
 export const ChatContext = createContext();
 
@@ -17,6 +17,7 @@ export const ChatContextProvider = ({ children }) => {
   const getUsers = async () => {
     try {
       const { data } = await axios.get("/api/message/users");
+ 
       if (data.success) {
         setUsers(data.users);
         setUnseenMessages(data.unseenMessage);
@@ -105,6 +106,7 @@ useEffect(()=>{
     sendMessage,
     unseenMessages,
     setUnseenMessages,
+    getMessages
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
