@@ -4,7 +4,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import {Toaster} from 'react-hot-toast'
-import { AuthContext } from '../context/authContext'
+import { AuthContext } from '../context/AuthContext'
 import { Navigate } from 'react-router-dom'
 
 const App = () => {
