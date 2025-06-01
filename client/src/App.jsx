@@ -7,6 +7,7 @@ import {Toaster} from 'react-hot-toast'
 import { AuthContext } from '../context/AuthContext'
 import { Navigate } from 'react-router-dom'
 
+
 const App = () => {
 
   const {authUser} = useContext(AuthContext)

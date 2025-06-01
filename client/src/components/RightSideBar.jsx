@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import assets, { imagesDummyData } from "../assets/assets";
 import { useContext } from "react";
 import { ChatContext } from "../../context/ChatContext";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const RightSideBar = () => {
 const {selectedUser, messages} = useContext(ChatContext)
