@@ -24,7 +24,6 @@ const SideBar = () => {
       })
     : users;
 
-
     useEffect(()=>{
       getUsers()
     },[onlineUsers])
@@ -80,6 +79,10 @@ const SideBar = () => {
           <div
             onClick={(e) => {
               setSelectedUser(user);
+              setUnseenMessages({
+                ...unseenMessages,
+                [user._id]: 0,
+              });
             }}
             key={index}
             className={`max-sm:text-sm p-2 rounded flex  gap-3 cursor-pointer relative ${

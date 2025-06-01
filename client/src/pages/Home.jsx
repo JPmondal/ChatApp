@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import SideBar from '../components/SideBar'
 import RightSideBar from '../components/RightSideBar'
 import ChatContainer from '../components/ChatContainer'
+import { useContext } from 'react'
+import { ChatContext } from '../../context/ChatContext'
 
 
 
 const Home = () => {
-
-  const [selectedUser,setSelectedUser] = useState(false)
+const {selectedUser} = useContext(ChatContext)
 
 
   return (
@@ -15,7 +16,7 @@ const Home = () => {
       <div className={`backdrop-blur-xl border-2 border-gray-600 rounded-2xl overflow-hidden h-[100%] grid grid-cols-1 relative ${selectedUser ? 'md:grid-cols-[1fr_1.5fr_1fr] xl:grid-cols-[1fr_2fr_1fr]' : 'md:grid-cols-2'}`}>
         <SideBar />
         <ChatContainer />
-        <RightSideBar selectedUser={selectedUser}/>
+        <RightSideBar />
       </div>
     </div>
   )

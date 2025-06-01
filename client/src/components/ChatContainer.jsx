@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/authContext";
 import toast from "react-hot-toast";
 
 const ChatContainer = () => {
-const {messages, selectedUser, setSelectedUser, senMessage, getMessages}  = useContext(ChatContext)
+const {messages, selectedUser, setSelectedUser, sendMessage, getMessages}  = useContext(ChatContext)
 
 const {authUser, onlineUsers}  = useContext(AuthContext)
   const scrollEndRef = useRef()
@@ -14,7 +14,7 @@ const {authUser, onlineUsers}  = useContext(AuthContext)
   const handleSendMessage = async(e)=>{
    e.preventDefault();
    if(input.trim() === '') return
-   await senMessage({text : input.trim()})
+   await sendMessage({text : input.trim()})
    setInput('')
   }
   //handle image sending
@@ -27,7 +27,7 @@ const {authUser, onlineUsers}  = useContext(AuthContext)
 
     const reader = new FileReader();
     reader.onloadend = async () => {
-     await senMessage({
+     await sendMessage({
         image : reader.result
       })
     };
